@@ -12,19 +12,30 @@ describe Plane do
   let(:plane) { Plane.new }
 
   it 'has a flying status when created' do
-    
+    expect(plane.status?).to eq("flying")
   end
 
   it 'has a flying status when in the air' do
-
+    plane.status = "flying"
+    expect(plane.status?).to eq("flying") 
   end
 
   it 'can take off' do
-
+    plane.status = "ground"
+    plane.take_off
+    expect(plane.status?).to eq "flying"
   end
 
-  it 'changes its status to flying after taking of' do
+  it 'can land' do
+    plane.take_off
+    plane.land
+    expect(plane.status?).to eq "ground"
+  end
 
+  it 'changes its status to flying after taking off' do
+    plane.status = "ground"
+    plane.take_off
+    expect(plane.status?).to eq("flying")
   end
 end
 
@@ -34,9 +45,9 @@ end
 # Check when all the planes have landed that they have the right status "landed"
 # Once all the planes are in the air again, check that they have the status of flying!
 
-describe "The grand finale (last spec)" do
+# describe "The grand finale (last spec)" do
 
-  it 'all planes can land and all planes can take off' do
+#   it 'all planes can land and all planes can take off' do
 
-  end
-end
+#   end
+# end
