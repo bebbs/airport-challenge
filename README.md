@@ -10,3 +10,9 @@ The Airport Challenge is test-driven.
 Responsibilites             | Collaborators
 ----------------------------|------------------
 Be x                        | X, X
+
+###Class - Airport
+
+Responsibilities            | Collaborators
+----------------------------|------------------
+Be x                        | x, X
