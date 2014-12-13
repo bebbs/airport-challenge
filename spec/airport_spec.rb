@@ -57,6 +57,8 @@ describe Airport do
       end
 
       it 'a plane cannot land in the middle of a storm' do
+        allow(airport).to receive(:stormy?) { true }
+        expect(lambda { airport.request_landing(plane) }).to raise_error("It is too stormy to land!")
       end
 
     end

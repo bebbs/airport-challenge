@@ -29,6 +29,8 @@ class Airport
   def request_landing(plane)
     if full? 
       raise "This airport is full!"
+    elsif stormy?
+      raise "It is too stormy to land!"
     else
       land_plane(plane)
     end
