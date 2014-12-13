@@ -1,21 +1,21 @@
 class Plane
 
-  attr_writer :status
+  attr_writer :flying
 
   def initialize
-    @status = "flying"
+    @flying = true
   end
 
-  def status?
-    @status
+  def flying?
+    @flying
   end
 
   def take_off
-    @status = "flying"
+    @flying = true
   end
 
   def land
-    @status = "ground"
+    @flying = false
   end
 
 end
