@@ -1,6 +1,5 @@
 require 'airport'
 require 'plane'
-require 'weather'
 # A plane currently in the airport can be requested to take off.
 #
 # No more planes can be added to the airport, if it's full.
