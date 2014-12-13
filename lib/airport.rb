@@ -30,7 +30,7 @@ class Airport
     if full? 
       raise "This airport is full!"
     else
-      lane_plane(plane)
+      land_plane(plane)
     end
   end
 
@@ -39,7 +39,14 @@ class Airport
     plane.land
   end
 
+def request_take_off(plane)
+  if stormy?
+    raise "It is too stormy to take off!"
+  else
+    dispatch_plane(plane)
+  end
 
+end
   def dispatch_plane(plane)
     planes.delete(plane)
     plane.take_off

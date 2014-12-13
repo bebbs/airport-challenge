@@ -1,8 +1,16 @@
 module Weather
 
   def weather_condition
-    chance = rand(0..1)
+    chance = rand
+    if chance <= 0.2
+      @stormy = true
+    else
+      @stormy = false
+    end
   end
 
-  rand(0..1)
+  def stormy?
+    @stormy
+  end
+
 end

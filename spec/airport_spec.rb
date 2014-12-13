@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 # A plane currently in the airport can be requested to take off.
 #
 # No more planes can be added to the airport, if it's full.
@@ -9,8 +10,8 @@ require 'plane'
 
 describe Airport do
 
-  let(:airport) { Airport.new(:capacity => 20) }
-  let(:plane)   { Plane.new }
+  let(:airport){ Airport.new }
+  let(:plane) { Plane.new }
 
   def fill_airport(number_of_planes, airport)
     number_of_planes.times { airport.land_plane(Plane.new) }
@@ -39,6 +40,9 @@ describe Airport do
       fill_airport(20, airport)
       expect(lambda { airport.request_landing(plane) }).to raise_error("This airport is full!")
     end
+
+    context 'weather conditions' do
+
     # Include a weather condition using a module.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy, the plane can not take off and must remain in the airport.
@@ -47,9 +51,9 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'weather conditions' do
-
       it 'a plane cannot take off when there is a storm brewing' do
+        allow(airport).to receive(:stormy?) { true }
+        expect(lambda { airport.request_take_off(plane) }).to raise_error("It is too stormy to take off!")
       end
 
       it 'a plane cannot land in the middle of a storm' do
