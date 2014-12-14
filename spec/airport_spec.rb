@@ -9,16 +9,28 @@ require 'plane'
 
 describe Airport do
 
-  let(:airport){ Airport.new }
   let(:plane) { Plane.new }
+  let(:airport) { Airport.new(capacity: 50)}
+
 
   def fill_airport(number_of_planes, airport)
-    number_of_planes.times { airport.land_plane(Plane.new) }
+    number_of_planes.times { airport.land_plane(plane) }
   end
 
-  it "has an array of planes" do
+  it 'has an array of planes' do
     expect(airport.planes).to be_kind_of(Array)
   end
+
+  it 'can be full' do
+    fill_airport(50, airport)
+    expect(airport).to be_full
+  end
+
+  it 'can be empty' do
+    fill_airport(0, airport)
+    expect(airport).to be_empty
+  end
+
 
   context 'taking off and landing' do
 
@@ -36,7 +48,7 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      fill_airport(20, airport)
+      fill_airport(50, airport)
       expect(lambda { airport.request_landing(plane) }).to raise_error("This airport is full!")
     end
 

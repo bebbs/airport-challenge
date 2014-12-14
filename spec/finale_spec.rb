@@ -15,11 +15,11 @@ describe "The grand finale (last spec)" do
   it 'all planes can land and all planes can take off' do
 
     land_all_planes
-    
+
     expect(airport.full?).to be true            # Ensure that the airport is full.
 
-    airport.planes.each do |plane|              # Check that all landed planes have a 
-      expect(plane.flying?).to be false         # are not flying.
+    airport.planes.each do |plane|              # Check that all landed planes are 
+      expect(plane.flying?).to be false         # not flying.
     end
 
     all_take_off
@@ -39,8 +39,10 @@ describe "The grand finale (last spec)" do
   end
 
   def all_take_off
-    airport.planes.each do |plane|              # While there are still planes at the 
-      airport.request_take_off(plane)           # airport, keep requesting take off slots.
+    while !airport.empty?
+      airport.planes.each do |plane|              # While there are still planes at the 
+        airport.request_take_off(plane)           # airport, keep requesting take off slots.
+      end
     end
   end
 

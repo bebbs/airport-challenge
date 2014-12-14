@@ -26,6 +26,10 @@ class Airport
     planes.length == capacity
   end
 
+  def empty?
+    planes.length == 0
+  end
+
   def request_landing(plane)
     if full? 
       raise "This airport is full!"
