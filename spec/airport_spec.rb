@@ -46,6 +46,7 @@ describe Airport do
       airport.dispatch_plane(plane)
       expect(airport.planes).not_to contain_exactly(plane)
     end
+
   end
 
   context 'traffic control' do

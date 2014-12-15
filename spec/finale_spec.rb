@@ -10,7 +10,13 @@ require 'airport'
 describe "The grand finale (last spec)" do
 
     let(:airport){ Airport.new(:capacity => 6) }
-    let(:plane) { Plane.new }
+    let(:plane) { double(:plane) }
+
+    before(:each) do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      allow(plane).to receive(:flying?) { false }
+    end
 
   it 'all planes can land and all planes can take off' do
 
