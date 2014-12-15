@@ -58,8 +58,4 @@ class Airport
     plane.take_off
   end
 
-  def weather?
-    stormy?
-  end
-
 end
