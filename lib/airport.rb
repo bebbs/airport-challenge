@@ -6,20 +6,11 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
+  attr_reader :planes, :capacity
+
   def initialize(options = {})
-    self.capacity = options.fetch(:capacity, capacity)
-  end
-
-  def planes
-    @planes ||= []
-  end
-
-  def capacity
-    @capacity ||= DEFAULT_CAPACITY
-  end
-
-  def capacity= (value)
-    @capacity = value
+    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
+    @planes = []
   end
 
   def full?
@@ -31,31 +22,24 @@ class Airport
   end
 
   def request_landing(plane)
-    if full? 
-      raise "This airport is full!"
-    elsif stormy?
-      raise "It is too stormy to land!"
-    else
-      land_plane(plane)
-    end
+    raise 'This airport is full!' if full? 
+    raise 'It is too stormy to land!' if stormy?
+    land_plane(plane)
   end
 
   def land_plane(plane)
-    planes << plane
     plane.land
+    planes << plane
   end
 
   def request_take_off(plane)
-    if stormy?
-      raise "It is too stormy to take off!"
-    else
-      dispatch_plane(plane)
-    end
+    raise "It is too stormy to take off!" if stormy?
+    dispatch_plane(plane)
   end
 
   def dispatch_plane(plane)
-    planes.delete(plane)
     plane.take_off
+    planes.delete(plane)
   end
 
 end

@@ -15,27 +15,26 @@ describe "The grand finale (last spec)" do
     before(:each) do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
-      allow(plane).to receive(:flying?) { false }
     end
 
   it 'all planes can land and takeoff' do
 
-    allow(airport).to receive(:stormy?)  
+    allow(airport).to receive(:stormy?).and_return false  
 
     create_planes(6)                            # Create 6 planes and pass them into @plane_array
 
-    land_all_planes
+    land_all_planes 
 
-    expect(airport.full?).to be true            # Ensure that the airport is full.
+    expect(airport).to be_full            # Ensure that the airport is full.
 
     airport.planes.each do |plane|              # Check that all landed planes are 
-      expect(plane.flying?).to be false         # not flying.
+      expect(plane).not_to be_flying         # not flying.
     end
 
     all_take_off
 
     airport.planes.each do |plane|              # Check that each plane is now flying.
-      expect(plane.flying?).to be true          
+      expect(plane).to be_flying       
     end
 
   end

@@ -13,11 +13,7 @@ module Weather
   # Compare the chance of a storm with its severity. 
   # If it is too severe, no planes can takeoff/land.
   def weather_condition
-    if chance_of_storm < storm_severity
-      @stormy = true
-    else
-      @stormy = false
-    end
+    @stormy = chance_of_storm < storm_severity
   end
 
   def stormy?

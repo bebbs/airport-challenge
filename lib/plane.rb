@@ -1,9 +1,7 @@
 class Plane
 
-  attr_writer :flying
-
   def initialize
-    @flying = true
+    take_off
   end
 
   def flying?
