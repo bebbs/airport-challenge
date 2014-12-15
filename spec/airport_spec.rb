@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 # A plane currently in the airport can be requested to take off.
 #
 # No more planes can be added to the airport, if it's full.
@@ -9,11 +8,16 @@ require 'plane'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
-  let(:airport) { Airport.new(capacity: 50)}
+  let(:plane) { double(:plane) }
+  let(:airport) { Airport.new(capacity: 50) }
 
+  before(:each) do
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:take_off)
+  end
 
   def fill_airport(number_of_planes, airport)
+    allow(plane).to receive(:land)
     number_of_planes.times { airport.land_plane(plane) }
   end
 
@@ -30,7 +34,6 @@ describe Airport do
     fill_airport(0, airport)
     expect(airport).to be_empty
   end
-
 
   context 'taking off and landing' do
 
