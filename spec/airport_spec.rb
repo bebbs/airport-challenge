@@ -16,7 +16,7 @@ describe Airport do
     allow(plane).to receive(:take_off)
   end
 
-  def fill_airport(number_of_planes, airport)
+  def fill_airport(number_of_planes)
     allow(plane).to receive(:land)
     number_of_planes.times { airport.land_plane(plane) }
   end
@@ -26,12 +26,12 @@ describe Airport do
   end
 
   it 'can be full' do
-    fill_airport(50, airport)
+    fill_airport(50)
     expect(airport).to be_full
   end
 
   it 'can be empty' do
-    fill_airport(0, airport)
+    fill_airport(0)
     expect(airport).to be_empty
   end
 
@@ -51,7 +51,7 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      fill_airport(50, airport)
+      fill_airport(50)
       expect(lambda { airport.request_landing(plane) }).to raise_error("This airport is full!")
     end
 
