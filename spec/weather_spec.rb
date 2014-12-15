@@ -14,7 +14,7 @@ describe 'Weather' do
   end
 
   it 'storms can be of varying severity' do
-    expect(weather.storm_severity).to be_between(0.1,0.4)
+    expect(weather.storm_severity).to be_between(0.2,0.4)
   end
 
   it 'sets a weather condition of stormy' do

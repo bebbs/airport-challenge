@@ -18,9 +18,9 @@ describe "The grand finale (last spec)" do
       allow(plane).to receive(:flying?) { false }
     end
 
-  it 'all planes can land and all planes can take off' do
+  it 'all planes can land and all planes can take off in good conditions' do
 
-    allow(airport).to receive(:stormy?) { false } # Talk to Sam about this
+    allow(airport).to receive(:stormy?) { false }
 
     create_planes(6)
 
@@ -51,9 +51,11 @@ describe "The grand finale (last spec)" do
   end
 
   def land_all_planes
-      @plane_array.each do |plane|                 # While the airport still has capacity,
-        airport.request_landing(plane)             # keep landing new planes.
-      end                   
+    while !airport.full? do
+      @plane_array.each do |plane|                # While the airport still has capacity,
+        airport.request_landing(plane)            # keep landing new planes.
+      end   
+    end                
   end
 
   def all_take_off
