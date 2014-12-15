@@ -45,17 +45,21 @@ class Airport
     plane.land
   end
 
-def request_take_off(plane)
-  if stormy?
-    raise "It is too stormy to take off!"
-  else
-    dispatch_plane(plane)
+  def request_take_off(plane)
+    if stormy?
+      raise "It is too stormy to take off!"
+    else
+      dispatch_plane(plane)
+    end
   end
 
-end
   def dispatch_plane(plane)
     planes.delete(plane)
     plane.take_off
+  end
+
+  def weather?
+    stormy?
   end
 
 end

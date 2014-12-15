@@ -17,5 +17,13 @@ describe 'Weather' do
     expect(weather.storm_severity).to be_between(0.1,0.4)
   end
 
+  it 'sets a weather condition of stormy' do
+    allow(weather).to receive(:stormy?) { true }
+    expect(weather.stormy?).to be true
+  end
 
+  it 'sets a weather condition of not stormy' do
+    allow(weather).to receive(:stormy?) { false }
+    expect(weather.stormy?).to be false
+  end
 end

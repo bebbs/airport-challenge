@@ -7,7 +7,7 @@ module Weather
   
   # Sometimes the storm will be too severe.
   def storm_severity
-    rand(0.1..0.4)
+    rand(0.2..0.3)
   end
 
   # Compare the chance of a storm with its severity. 
@@ -21,6 +21,7 @@ module Weather
   end
 
   def stormy?
+    weather_condition
     @stormy
   end
 

@@ -10,13 +10,7 @@ require 'weather'
 
 describe Plane do
 
-  let(:plane) { double(:plane) }
-
-  before(:each) do
-    allow(plane).to receive(:flying?) { true }
-    allow(plane).to receive(:take_off)
-    allow(plane).to receive(:land)
-  end
+  let(:plane) { Plane.new }
 
   it 'has a flying status when created' do
     expect(plane.flying?).to be true

@@ -20,6 +20,10 @@ describe "The grand finale (last spec)" do
 
   it 'all planes can land and all planes can take off' do
 
+    allow(airport).to receive(:stormy?) { false } # Talk to Sam about this
+
+    create_planes(6)
+
     land_all_planes
 
     expect(airport.full?).to be true            # Ensure that the airport is full.
@@ -38,10 +42,18 @@ describe "The grand finale (last spec)" do
 
   # HELPER METHODS
 
-  def land_all_planes
-    while !airport.full?                        # While the airport still has capacity, 
-      airport.request_landing(plane)            # keep landing new planes.
+  def create_planes(number)
+    @plane_array = []
+    number.times do
+      plane = Plane.new
+      @plane_array << plane
     end
+  end
+
+  def land_all_planes
+      @plane_array.each do |plane|                 # While the airport still has capacity,
+        airport.request_landing(plane)             # keep landing new planes.
+      end                   
   end
 
   def all_take_off

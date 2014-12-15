@@ -53,7 +53,7 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do
       fill_airport(50)
-      expect(lambda { airport.request_landing(plane) }).to raise_error("This airport is full!")
+      expect(lambda { airport.request_landing(plane) }).to raise_error(RuntimeError, "This airport is full!")
     end
 
     context 'weather conditions' do
@@ -68,12 +68,12 @@ describe Airport do
 
       it 'a plane cannot take off when there is a storm brewing' do
         allow(airport).to receive(:stormy?) { true }
-        expect(lambda { airport.request_take_off(plane) }).to raise_error("It is too stormy to take off!")
+        expect(lambda { airport.request_take_off(plane) }).to raise_error(RuntimeError, "It is too stormy to take off!")
       end
 
       it 'a plane cannot land in the middle of a storm' do
         allow(airport).to receive(:stormy?) { true }
-        expect(lambda { airport.request_landing(plane) }).to raise_error("It is too stormy to land!")
+        expect(lambda { airport.request_landing(plane) }).to raise_error(RuntimeError, "It is too stormy to land!")
       end
 
     end
