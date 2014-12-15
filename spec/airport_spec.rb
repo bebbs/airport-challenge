@@ -17,7 +17,6 @@ describe Airport do
   end
 
   def fill_airport(number_of_planes)
-    allow(plane).to receive(:land)
     number_of_planes.times { airport.land_plane(plane) }
   end
 

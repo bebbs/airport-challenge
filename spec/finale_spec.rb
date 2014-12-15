@@ -20,7 +20,7 @@ describe "The grand finale (last spec)" do
 
   it 'all planes can land and takeoff' do
 
-    allow(airport).to receive(:stormy?)       
+    allow(airport).to receive(:stormy?)  
 
     create_planes(6)                            # Create 6 planes and pass them into @plane_array
 
