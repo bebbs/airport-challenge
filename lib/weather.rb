@@ -10,7 +10,8 @@ module Weather
     rand(0.1..0.4)
   end
 
-  # Compare the chance of rain to what was forecasted.
+  # Compare the chance of a storm with its severity. 
+  # If it is too severe, no planes can takeoff/land 
   def weather_condition
     if chance_of_storm <= storm_severity
       @stormy = true

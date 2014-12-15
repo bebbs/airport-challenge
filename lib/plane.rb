@@ -18,4 +18,7 @@ class Plane
     @flying = false
   end
 
+  def grounded?
+  end
+
 end
